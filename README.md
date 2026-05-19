@@ -1,16 +1,68 @@
-# React + Vite
+## InvoiceFlow React
+A modern and responsive Invoice Builder application developed using React JS and TailwindCSS. The application allows users to create professional invoices dynamically by entering client details, adding multiple invoice items, calculating totals automatically, and exporting invoices as printable PDF files.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Demo
+# Frontend Deployment:
+https://invoiceflow-react.netlify.app
 
-Currently, two official plugins are available:
+# GitHub Repository
+https://github.com/nandiniK7/invoiceflow-react
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# Features
+Add client and billing information
+Add multiple invoice items dynamically
+Edit and delete invoice items
+Automatic subtotal, tax, and grand total calculation
+Responsive and modern UI
+Export invoice as PDF / printable format
+Local state management using React Hooks
+Responsive layout for desktop and mobile devices
 
-## React Compiler
+# Tech Stack
+React JS
+TailwindCSS
+React Hooks
+JavaScript
+HTML5
+CSS3
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Installation and Setup
 
-## Expanding the ESLint configuration
+# Clone the repository:
+git clone https://github.com/nandiniK7/invoiceflow-react.git
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Navigate into the project folder:
+cd invoiceflow-react
+
+# Install dependencies:
+npm install
+
+Run the development server:
+npm run dev
+
+# Project Structure
+src/
+ ├── components/
+ ├── pages/
+ ├── App.jsx
+ ├── main.jsx
+ └── index.css
+ 
+# Functionalities Implemented
+Dynamic invoice generation
+Item quantity and rate calculations
+Automatic tax calculation
+Real-time total updates
+Delete functionality for invoice items
+Print and PDF export support
+Responsive invoice layout
+
+# Future Improvements
+Invoice editing functionality
+Backend database integration
+Authentication system
+Invoice history management
+Dark/light theme toggle
+
+# Author
+Nandini Kasiraju
