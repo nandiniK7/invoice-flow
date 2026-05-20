@@ -57,41 +57,153 @@ const Home = () => {
 
     printWindow.document.write(`
       <html>
+
         <head>
+
           <title>Invoice</title>
 
           <style>
+
             body {
-              font-family: Arial;
-              padding: 40px;
-              color: black;
+
+              font-family: Arial, sans-serif;
+
+              padding: 50px;
+
+              background: white;
+
+              color: #111827;
             }
 
-            table {
-              width: 100%;
-              border-collapse: collapse;
-              margin-top: 20px;
+            .invoice-header {
+
+              display: flex;
+
+              justify-content: space-between;
+
+              align-items: center;
+
+              border-bottom: 2px solid #e5e7eb;
+
+              padding-bottom: 20px;
+
+              margin-bottom: 40px;
             }
 
-            th, td {
-              border: 1px solid #ccc;
-              padding: 12px;
-              text-align: center;
-            }
+            .invoice-logo {
 
-            h1 {
+              font-size: 38px;
+
+              font-weight: bold;
+
               color: #0891b2;
             }
 
+            .invoice-title {
+
+              font-size: 34px;
+
+              font-weight: bold;
+            }
+
+            table {
+
+              width: 100%;
+
+              border-collapse: collapse;
+
+              margin-top: 25px;
+            }
+
+            th {
+
+              background: #0891b2;
+
+              color: white;
+
+              padding: 14px;
+
+              text-align: center;
+            }
+
+            td {
+
+              border: 1px solid #d1d5db;
+
+              padding: 14px;
+
+              text-align: center;
+            }
+
+            h2 {
+
+              margin: 8px 0;
+            }
+
+            .totals {
+
+              margin-top: 40px;
+
+              width: 320px;
+
+              margin-left: auto;
+            }
+
+            .totals div {
+
+              display: flex;
+
+              justify-content: space-between;
+
+              margin-bottom: 14px;
+
+              font-size: 18px;
+            }
+
+            .grand-total {
+
+              font-size: 28px;
+
+              font-weight: bold;
+
+              border-top: 2px solid #111827;
+
+              padding-top: 15px;
+            }
+
             .no-print {
+
               display: none;
             }
+
+            button {
+
+              display: none;
+            }
+
+            input {
+
+              border: none;
+
+              outline: none;
+
+              background: transparent;
+
+              color: black;
+
+              font-size: 16px;
+            }
+
           </style>
+
         </head>
 
         <body>
+
           ${element.innerHTML}
+
         </body>
+
       </html>
     `);
 
@@ -106,16 +218,46 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 p-8">
+
       <div
         id="invoice"
         className="max-w-6xl mx-auto bg-gray-900 text-white shadow-2xl border border-gray-700 rounded-2xl p-8"
       >
-        <h1 className="text-5xl font-bold text-center text-cyan-400 mb-10">
-          Invoice Builder
-        </h1>
+
+        {/* Header */}
+
+        <div className="invoice-header flex justify-between items-center border-b border-gray-700 pb-6 mb-8">
+
+          <div>
+
+            <h1 className="invoice-logo text-5xl font-bold text-cyan-400">
+              InvoiceFlow
+            </h1>
+
+            <p className="text-gray-400 mt-2">
+              Professional Invoice Generator
+            </p>
+
+          </div>
+
+          <div className="text-right">
+
+            <h2 className="invoice-title text-4xl font-bold">
+              INVOICE
+            </h2>
+
+            <p className="text-gray-400 mt-2">
+              #{invoiceNumber || "0001"}
+            </p>
+
+          </div>
+
+        </div>
 
         {/* Client Details */}
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
+
           <input
             type="text"
             placeholder="Client Name"
@@ -146,10 +288,13 @@ const Home = () => {
             onChange={(e) => setDate(e.target.value)}
             className="border border-gray-600 bg-gray-800 text-white p-3 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-cyan-400"
           />
+
         </div>
 
         {/* Add Items */}
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+
           <input
             type="text"
             placeholder="Description"
@@ -180,13 +325,19 @@ const Home = () => {
           >
             Add Item
           </button>
+
         </div>
 
         {/* Table */}
+
         <div className="overflow-x-auto">
+
           <table className="w-full border-collapse overflow-hidden rounded-xl">
+
             <thead className="bg-cyan-500 text-black">
+
               <tr>
+
                 <th className="border border-gray-700 p-4">
                   Description
                 </th>
@@ -206,12 +357,17 @@ const Home = () => {
                 <th className="border border-gray-700 p-4 no-print">
                   Action
                 </th>
+
               </tr>
+
             </thead>
 
             <tbody>
+
               {items.map((item, index) => (
+
                 <tr key={index}>
+
                   <td className="border border-gray-700 p-4 text-center">
                     {item.description}
                   </td>
@@ -229,44 +385,87 @@ const Home = () => {
                   </td>
 
                   <td className="border border-gray-700 p-4 text-center no-print">
+
                     <button
                       onClick={() => deleteItem(index)}
                       className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg"
                     >
                       Delete
                     </button>
+
                   </td>
+
                 </tr>
+
               ))}
+
             </tbody>
+
           </table>
+
         </div>
 
         {/* Totals */}
-        <div className="text-right mt-10 space-y-3">
-          <h2 className="text-2xl font-semibold">
-            Subtotal: ₹{subtotal.toFixed(2)}
-          </h2>
 
-          <h2 className="text-2xl font-semibold">
-            Tax (18%): ₹{tax.toFixed(2)}
-          </h2>
+        <div className="flex justify-end mt-10">
 
-          <h2 className="text-4xl font-bold text-cyan-400">
-            Total: ₹{total.toFixed(2)}
-          </h2>
+          <div className="w-[320px] bg-gray-800 p-6 rounded-xl">
+
+            <div className="flex justify-between text-xl mb-4">
+
+              <span>
+                Subtotal
+              </span>
+
+              <span>
+                ₹{subtotal.toFixed(2)}
+              </span>
+
+            </div>
+
+            <div className="flex justify-between text-xl mb-4">
+
+              <span>
+                Tax (18%)
+              </span>
+
+              <span>
+                ₹{tax.toFixed(2)}
+              </span>
+
+            </div>
+
+            <div className="flex justify-between text-3xl font-bold text-cyan-400 border-t border-gray-600 pt-4">
+
+              <span>
+                Total
+              </span>
+
+              <span>
+                ₹{total.toFixed(2)}
+              </span>
+
+            </div>
+
+          </div>
+
         </div>
 
         {/* Download PDF */}
+
         <div className="text-center mt-10">
+
           <button
             onClick={downloadPDF}
             className="no-print bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl text-lg font-semibold transition"
           >
             Download PDF
           </button>
+
         </div>
+
       </div>
+
     </div>
   );
 };
